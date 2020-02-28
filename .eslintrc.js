@@ -3,40 +3,49 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: "plugin:react/recommended",
+  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
   globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly'
   },
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["react", "react-hooks"],
+  plugins: ['react', 'react-hooks', 'prettier'],
   rules: {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'no-unused-vars': [
+      'error',
+      { vars: 'all', args: 'after-used', ignoreRestSiblings: false }
+    ],
+    quotes: [
+      'error',
+      'single',
+      { avoidEscape: true, allowTemplateLiterals: false }
+    ]
   },
   settings: {
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        extensions: [".js", ".jsx"],
+        extensions: ['.js', '.jsx'],
         paths: [],
-        moduleDirectory: ["node_modules", "src"]
+        moduleDirectory: ['node_modules', 'src']
       }
     },
     react: {
-      createClass: "createReactClass", // Regex for Component Factory to use,
+      createClass: 'createReactClass', // Regex for Component Factory to use,
       // default to "createReactClass"
-      pragma: "React", // Pragma to use, default to "React"
-      version: "detect", // React version. "detect" automatically picks the version you have installed.
+      pragma: 'React', // Pragma to use, default to "React"
+      version: 'detect', // React version. "detect" automatically picks the version you have installed.
       // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
       // default to latest and warns if missing
       // It will default to "detect" in the future
-      flowVersion: "0.53" // Flow version
+      flowVersion: '0.53' // Flow version
     }
   }
 };

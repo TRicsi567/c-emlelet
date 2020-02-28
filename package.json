@@ -33,8 +33,32 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-import-resolver-node": "^0.3.3",
+    "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^2.4.0"
+    "eslint-plugin-react-hooks": "^2.4.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": ""
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "always"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "prettier --write",
+      "eslint src/**/*.js"
+    ]
   }
 }

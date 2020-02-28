@@ -1,9 +1,10 @@
 .App {
-  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vh;
   pointer-events: none;
 }
 
@@ -14,14 +15,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Main {
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .App-link {
@@ -35,4 +41,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.fancy-button {
+  margin: 0 20px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
+  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+  color: white;
+  font-weight: bold;
 }
