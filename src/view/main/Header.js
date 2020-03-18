@@ -7,7 +7,7 @@ const Header = (props) => {
   const { className } = props;
   return (
     <header className={clsx(className, 'header-root')}>
-      <h1>Lessons</h1>
+      <h1>C-emlélet</h1>
     </header>
   );
 };
