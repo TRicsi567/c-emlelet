@@ -4,8 +4,7 @@ import Content from 'view/main/Content';
 import Footer from 'view/main/Footer';
 import LessonsScreen from 'view/lessons/LessonListScreen';
 import 'view/main/Root.scss';
-import { BrowserRouter as Router,
-         Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LessonPage from 'view/lessons/LessonScreen';
 
 const Page = () => {
