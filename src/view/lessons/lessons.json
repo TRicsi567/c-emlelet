@@ -1,0 +1,46 @@
+{
+    "lessons": [
+        {
+          "id": 0,
+          "title": "Pointers",
+          "difficulty": "beginner",
+          "length": 5,
+          "description": "This is a very nice course yes indeed, very nice",
+          "exampleCode": "int main() { Henlo computor can u gib nice progrem tenk }",
+          "textExplanations": [
+              "This is a very nice program",
+              "Very tasty too",
+              "Rece ruca pitty putty",
+              "My name Jeff",
+              "Friday, Friday, gotta get down on Friday"
+          ], 
+          "visualExplanationImageNames": [
+            "placeholder.jpg",
+            "placeholder.jpg",
+            "placeholder.jpg",
+            "placeholder.jpg",
+            "placeholder.jpg"
+          ]
+        },
+        {
+            "id": 1,
+            "title": "Not pointers",
+            "difficulty": "intermediate",
+            "length": 4,
+            "description": "This is a very mean course yes indeed, very mean",
+            "exampleCode": "int main() { Henlo computor can u gib mean progrem no tenk }",
+            "textExplanations": [
+                "This is a mean nice program",
+                "Very tasty too",
+                "Rece ruca pitty putty",
+                "My name Jeff"
+            ], 
+            "visualExplanationImageNames": [
+              "placeholder.jpg",
+              "placeholder.jpg",
+              "placeholder.jpg",
+              "placeholder.jpg"
+            ]
+          }
+    ]
+}

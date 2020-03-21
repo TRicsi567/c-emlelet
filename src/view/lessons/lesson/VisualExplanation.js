@@ -2,6 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
+import PropTypes from 'prop-types';
+
+VisualExplanation.propTypes = {
+  visualExplanationImageNames: PropTypes.array,
+  slideNumber: PropTypes.number
+};
 
 const useStyles = makeStyles({
   root: {
@@ -14,14 +20,16 @@ const useStyles = makeStyles({
   }
 });
 
-export default function VisualExplanation() {
+export default function VisualExplanation(props) {
   const classes = useStyles();
+  const visualExplanationImageNames = props.visualExplanationImageNames;
+  const slideNumber = props.slideNumber;
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={require('images/placeholder.jpg')}
+        image={require('images/' + visualExplanationImageNames[slideNumber])}
         title='Wow this place is really heavy'
       />
     </Card>

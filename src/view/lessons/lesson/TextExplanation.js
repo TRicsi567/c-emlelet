@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   root: {
@@ -11,16 +12,23 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TextExample() {
+export default function TextExample(props) {
   const classes = useStyles();
+  const textExplanations = props.textExplanations;
+  const slideNumber = props.slideNumber;
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant='body2' component='p'>
-          When writing C++ code, make sure you dont do any oopsies.
+          {textExplanations[slideNumber]}
         </Typography>
       </CardContent>
     </Card>
   );
 }
+
+TextExample.propTypes = {
+  textExplanations: PropTypes.array,
+  slideNumber: PropTypes.number
+};

@@ -6,6 +6,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+LessonPreviewCard.propTypes = {
+  lesson: PropTypes.object
+};
 
 const useStyles = makeStyles({
   root: {
@@ -19,8 +24,9 @@ const useStyles = makeStyles({
   }
 });
 
-export default function LessonPreviewCard() {
+export default function LessonPreviewCard(props) {
   const classes = useStyles();
+  const lesson = props.lesson;
 
   return (
     <Card className={classes.root}>
@@ -33,14 +39,14 @@ export default function LessonPreviewCard() {
           C++
         </Typography>
         <Typography variant='h5' component='h2'>
-          Pointers
+          {lesson.title}
         </Typography>
         <Typography variant='body2' component='p'>
-          Learn how pointers work in C++ once and for all.
+          {lesson.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to='lesson'>
+        <Link to={'lesson/' + lesson.id}>
           <Button size='small'>Son of a bitch, Im in!</Button>
         </Link>
       </CardActions>

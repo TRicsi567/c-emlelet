@@ -14,11 +14,12 @@ const Page = () => {
       <Content className='main'>
         <Router>
           <Route path='/' exact>
-            <LessonsScreen className='lessonsScreen'></LessonsScreen>
+            <LessonsScreen
+              className='lessonsScreen'
+              component={LessonsScreen}
+            />
           </Route>
-          <Route path='/Lesson' exact>
-            <LessonScreen></LessonScreen>
-          </Route>
+          <Route path='/lesson/:id' exact component={LessonScreen} />
         </Router>
       </Content>
       <Footer className='footer' />
