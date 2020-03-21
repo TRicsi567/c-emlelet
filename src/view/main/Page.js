@@ -5,7 +5,7 @@ import Footer from 'view/main/Footer';
 import LessonsScreen from 'view/lessons/LessonListScreen';
 import 'view/main/Root.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import LessonPage from 'view/lessons/LessonScreen';
+import LessonScreen from 'view/lessons/LessonScreen';
 
 const Page = () => {
   return (
@@ -17,7 +17,7 @@ const Page = () => {
             <LessonsScreen className='lessonsScreen'></LessonsScreen>
           </Route>
           <Route path='/Lesson' exact>
-            <LessonPage></LessonPage>
+            <LessonScreen></LessonScreen>
           </Route>
         </Router>
       </Content>

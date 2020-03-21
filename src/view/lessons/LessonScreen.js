@@ -6,11 +6,13 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import 'view/lessons/LessonScreen.scss';
 
-const LessonPage = () => {
+const LessonScreen = () => {
   return (
     <>
       <Link to='/'>
-        <Button size='medium'>Home</Button>
+        <Button size='medium' className='lesson-button'>
+          Home
+        </Button>
       </Link>
       <ul>
         <li>
@@ -25,17 +27,17 @@ const LessonPage = () => {
       </ul>
       <ul>
         <li>
-          <Button>next</Button>
+          <Button className='lesson-button'>next</Button>
         </li>
         <li>
           <p>5</p>
         </li>
         <li>
-          <Button>previous</Button>
+          <Button className='lesson-button'>previous</Button>
         </li>
       </ul>
     </>
   );
 };
 
-export { LessonPage as default };
+export { LessonScreen as default };
