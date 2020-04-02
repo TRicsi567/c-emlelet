@@ -1,0 +1,39 @@
+@import './theme-colors.scss';
+@import './theme-fonts.scss';
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: $primary-color;
+  background-color: $default-background-color;
+}
+$default-background-color: #282c34;
+$highlight-color: #09d3ac;
+$default-color: #f5f5f5;
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+header {
+  max-height: 10vh;
+  box-sizing: border-box;
+}
+
+main {
+  min-height: 80vh;
+  min-width: 80vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-image: url('../assets/images/black-board.jpg');
+  background-repeat: round;
+  box-shadow: 1px 1px 13px $default-color;
+}
+
+footer {
+  max-height: 10vh;
+  box-sizing: border-box;
+}

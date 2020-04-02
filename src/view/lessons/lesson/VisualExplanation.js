@@ -29,7 +29,8 @@ export default function VisualExplanation(props) {
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={require('images/' + visualExplanationImageNames[slideNumber])}
+        image={require('assets/images/' +
+          visualExplanationImageNames[slideNumber])}
         title='Wow this place is really heavy'
       />
     </Card>
