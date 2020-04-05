@@ -1,0 +1,31 @@
+@import '../../theme/theme-colors.scss';
+
+.fancy-button-root {
+  font-size: 1rem;
+  outline: none;
+  color: $primary-color;
+  font-weight: 700;
+  border: 0;
+  height: 48px;
+  padding: 0 30px;
+  background: $secondary-color-variant;
+  background: #{linear-gradient(
+      45deg,
+      $secondary-color 30%,
+      $secondary-color-variant 90%
+    )};
+  border-radius: 3px;
+  transition: background 300ms ease-in 0ms;
+  &:hover {
+    background: #{linear-gradient(
+        45deg,
+        $secondary-color 10%,
+        $secondary-color-variant 90%
+      )};
+  }
+}
+
+.fancy-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

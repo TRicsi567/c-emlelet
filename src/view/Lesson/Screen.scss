@@ -1,0 +1,44 @@
+.lesson-grid-container {
+  margin: 16px;
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 12fr 1fr;
+  gap: 16px;
+  grid-template-areas:
+    'back tle btn'
+    'txt cde img'
+    'prv cur nxt';
+}
+
+.text-explanation {
+  grid-area: txt;
+}
+.code-explanation {
+  grid-area: cde;
+}
+.visual-explanation {
+  grid-area: img;
+}
+
+.back-button {
+  grid-area: back;
+}
+
+.prev-button {
+  grid-area: prv;
+}
+
+.next-button {
+  grid-area: nxt;
+}
+
+.slide-counter {
+  display: flex;
+  font-family: 'Pacifico', cursive;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  grid-area: cur;
+  user-select: none;
+}

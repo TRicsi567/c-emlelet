@@ -7,7 +7,9 @@ const Header = (props) => {
   const { className } = props;
   return (
     <header className={clsx(className, 'header-root')}>
-      <h1>C-emlélet</h1>
+      <a href='/'>
+        <h1>C-emlélet</h1>
+      </a>
     </header>
   );
 };
