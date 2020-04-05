@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Grid from 'view/template/Grid';
 import Card from './Card';
-import kekew from 'assets/images/placeholder.jpg';
 import { useHistory } from 'react-router';
 import { loadTutorial } from 'state/App/actions';
 import './Screen.scss';
@@ -20,15 +19,15 @@ const LessonListScreen = () => {
 
   return (
     <Grid className='lessons-grid-container'>
-      {tutorialDescriptions.map(({ id, title, description }) => (
+      {tutorialDescriptions.map(({ id, title, description, difficulty }) => (
         <Card
           key={id}
           texts={{ title, description }}
-          image={{ src: kekew, alt: 'dunno' }}
           onClick={() => {
             loadTutorial(id, dispatch);
             history.push(`/${id}`);
           }}
+          difficulty={difficulty}
         />
       ))}
     </Grid>
