@@ -37,7 +37,7 @@ const LessonScreen = () => {
   return (
     <Grid className='lesson-grid-container'>
       <FancyButton className='back-button' onClick={handleBack}>
-        Back
+        Vissza
       </FancyButton>
       <ExplanationBlock className='text-explanation'>
         <TextExplanation texts={textExplanations} slideNum={slideNum} />
@@ -53,14 +53,14 @@ const LessonScreen = () => {
         onClick={handlePrevSlide}
         disabled={slideNum === 0}
       >
-        Previous
+        Előző
       </FancyButton>
       <FancyButton
         className='next-button'
         onClick={handleNextSlide}
         disabled={tutorial.length === slideNum + 1}
       >
-        Next
+        Következő
       </FancyButton>
       <div className='slide-counter'>
         <span>{`${slideNum + 1} / ${tutorial.length}`}</span>

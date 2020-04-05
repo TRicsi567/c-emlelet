@@ -2,7 +2,7 @@
   margin: 16px;
   min-height: 80vh;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(296px, 1fr));
   grid-template-rows: 1fr 12fr 1fr;
   gap: 16px;
   grid-template-areas:
@@ -41,4 +41,27 @@
   font-size: 1.6rem;
   grid-area: cur;
   user-select: none;
+}
+
+@media only screen and (max-width: 1120px) {
+  .lesson-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto repeat(3, 1fr) auto;
+    gap: 8px;
+    grid-template-areas:
+      'back tle btn'
+      'txt txt txt'
+      'cde cde cde'
+      'img img img'
+      'prv cur nxt';
+  }
+  .fancy-button-root {
+    padding: 0 8px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .slide-counter {
+    font-size: 1rem;
+  }
 }
