@@ -30,13 +30,6 @@ module.exports = {
     ]
   },
   settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx'],
-        paths: [],
-        moduleDirectory: ['node_modules', 'src']
-      }
-    },
     react: {
       createClass: 'createReactClass', // Regex for Component Factory to use,
       // default to "createReactClass"

@@ -1,0 +1,27 @@
+@import '../../theme/theme-colors.scss';
+
+@mixin card-image($bg-color) {
+  color: $primary-color;
+  background-color: $bg-color;
+  flex-grow: 0;
+  border-radius: 8px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 0 0 20px $default-background-color;
+}
+
+.card-image-easy {
+  @include card-image(#3dd966);
+}
+
+.card-image-medium {
+  @include card-image(#e3dc1e);
+}
+
+.card-image-hard {
+  @include card-image(#de0d34);
+}

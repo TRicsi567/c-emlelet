@@ -1,0 +1,18 @@
+@import '../../theme/theme-colors.scss';
+
+header {
+  margin: 16px;
+}
+
+.header-root {
+  a {
+    font-family: 'Pacifico', cursive;
+    color: $primary-color;
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+  }
+}

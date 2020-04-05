@@ -1,0 +1,40 @@
+@import './theme-colors.scss';
+@import './theme-fonts.scss';
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: $primary-color;
+  background-color: $default-background-color;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+header {
+  max-height: 10vh;
+  box-sizing: border-box;
+}
+
+main {
+  width: 85vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-image: url('../assets/images/black-board.jpg');
+  background-repeat: round;
+  box-shadow: 0px 0px 69px 0px rgba($color: $secondary-color, $alpha: 0.4);
+}
+
+footer {
+  margin-top: auto;
+  max-height: 10vh;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
