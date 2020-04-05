@@ -32,13 +32,16 @@ main {
   box-sizing: border-box;
   background-image: url('../assets/images/black-board.jpg');
   background-repeat: round;
+  border-radius: 3px;
   box-shadow: 0px 0px 69px 0px rgba($color: $secondary-color, $alpha: 0.4);
 }
 
 footer {
   background-color: $background-color-400;
   border-top: 1px solid $secondary-color;
-  padding: 8px;
+  padding: 8px 5vw;
+  display: flex;
+  align-items: center;
 }
 
 p {
