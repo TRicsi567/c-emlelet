@@ -34,7 +34,6 @@ const reducer = (state, action) => {
       };
     }
     case LOAD_TUTORIAL: {
-      console.log('KEKEKEKEKW');
       return { ...state, tutorial: { ...payload }, slideNum: 0 };
     }
     case LOAD_TUTORIAL_DESCRIPTIONS: {

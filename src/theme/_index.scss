@@ -1,6 +1,10 @@
 @import './theme-colors.scss';
 @import './theme-fonts.scss';
 
+body {
+  margin: 0;
+}
+
 html {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -9,15 +13,17 @@ html {
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  display: grid;
+  min-height: 100vh;
   box-sizing: border-box;
+  grid-template-rows: 120px 1fr 180px;
+  gap: 24px;
 }
 
 header {
-  max-height: 10vh;
-  box-sizing: border-box;
+  background-color: $background-color-400;
+  border-bottom: 1px solid $secondary-color;
+  padding: 8px;
 }
 
 main {
@@ -26,13 +32,16 @@ main {
   box-sizing: border-box;
   background-image: url('../assets/images/black-board.jpg');
   background-repeat: round;
+  border-radius: 3px;
   box-shadow: 0px 0px 69px 0px rgba($color: $secondary-color, $alpha: 0.4);
 }
 
 footer {
-  margin-top: auto;
-  max-height: 10vh;
-  box-sizing: border-box;
+  background-color: $background-color-400;
+  border-top: 1px solid $secondary-color;
+  padding: 8px 5vw;
+  display: flex;
+  align-items: center;
 }
 
 p {

@@ -8,23 +8,23 @@ const CardImage = (props) => {
   const text = ((_difficulty) => {
     switch (_difficulty) {
       case 'beginner': {
-        return 'easy';
+        return ['easy', 'kezdő'];
       }
       case 'intermediate': {
-        return 'medium';
+        return ['medium', 'haladó'];
       }
       case 'expert': {
-        return 'hard';
+        return ['hard', 'nehéz'];
       }
       default: {
-        return 'easy';
+        return ['easy', 'kezdő'];
       }
     }
   })(difficulty);
 
   return (
-    <div className={`card-image-${text}`}>
-      <span>{text}</span>
+    <div className={`card-image-${text[0]}`}>
+      <span>{text[1]}</span>
     </div>
   );
 };
