@@ -9,7 +9,7 @@ const Footer = (props) => {
     <footer className={className}>
       <div className='github-link-wrapper'>
         <a href='https://github.com/TRicsi567/c-emlelet'>
-          <img src={gitHubLogo} />
+          <img src={gitHubLogo} alt={'git-hub-repo-link'} />
         </a>
       </div>
     </footer>
