@@ -14,7 +14,7 @@ const LessonListScreen = () => {
   const { tutorialDescriptions } = state;
 
   useEffect(() => {
-    loadTutorialDescriptions(dispatch);
+    loadTutorialDescriptions({ dispatch });
   }, [dispatch]);
 
   return (
@@ -24,7 +24,7 @@ const LessonListScreen = () => {
           key={id}
           texts={{ title, description }}
           onClick={() => {
-            loadTutorial(id, dispatch);
+            loadTutorial({ id, dispatch });
             history.push(`/${id}`);
           }}
           difficulty={difficulty}

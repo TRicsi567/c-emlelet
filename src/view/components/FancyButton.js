@@ -13,6 +13,7 @@ const FancyButton = (props) => {
         className
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>

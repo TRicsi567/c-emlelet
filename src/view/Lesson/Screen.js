@@ -18,16 +18,17 @@ const LessonScreen = () => {
   const { textExplanations, exampleCode, visualExplanation } = tutorial;
   const { pathname } = useLocation();
   const history = useHistory();
+
   useEffect(() => {
-    loadTutorial(Number(pathname.slice(1)), dispatch);
+    loadTutorial({ id: Number(pathname.slice(1)), dispatch });
   }, [dispatch, pathname]);
 
   const handleNextSlide = useCallback(() => {
-    nextSlide(dispatch);
+    nextSlide({ dispatch });
   }, [dispatch]);
 
   const handlePrevSlide = useCallback(() => {
-    prevSlide(dispatch);
+    prevSlide({ dispatch });
   }, [dispatch]);
 
   const handleBack = useCallback(() => {

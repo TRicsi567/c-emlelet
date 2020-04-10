@@ -7,12 +7,22 @@ describe('<FancyButton />', () => {
   it('Renders correctly', () => {
     const handleClick = jest.fn();
 
-    const { getByText /*, debug */ } = render(
+    const { getByText, rerender } = render(
       <FancyButton onClick={handleClick}>{text}</FancyButton>
     );
     // debug();
     expect(getByText(text).textContent).toBe(text);
     fireEvent.click(getByText(text));
     expect(handleClick).toHaveBeenCalledTimes(1);
+
+    rerender(
+      <FancyButton onClick={handleClick} disabled>
+        {text}
+      </FancyButton>
+    );
+    expect(getByText(text)).toHaveProperty('disabled', true);
+
+    rerender(<FancyButton>{text}</FancyButton>);
+    fireEvent.click(getByText(text));
   });
 });
