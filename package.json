@@ -35,7 +35,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -66,8 +65,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test:ci",
-      "pre-push": "npm run test:ci && npm run build"
+      "pre-commit": "lint-staged && npm test -- --watchAll=false",
+      "pre-push": "npm run build && npm test -- --watchAll=false"
     }
   },
   "prettier": {
