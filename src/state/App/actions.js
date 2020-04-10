@@ -7,7 +7,7 @@ const actions = {
   PREV_SLIDE: 'PREV_SLIDE'
 };
 
-const loadTutorialDescriptions = (dispatch) => {
+const loadTutorialDescriptions = ({ dispatch }) => {
   dispatch({
     type: actions.LOAD_TUTORIAL_DESCRIPTIONS,
     payload: tutorials.map(({ id, title, difficulty, description }) => ({
@@ -19,15 +19,15 @@ const loadTutorialDescriptions = (dispatch) => {
   });
 };
 
-const loadTutorial = (id, dispatch) => {
+const loadTutorial = ({ id, dispatch }) => {
   dispatch({ type: actions.LOAD_TUTORIAL, payload: tutorials[id] });
 };
 
-const nextSlide = (dispatch) => {
+const nextSlide = ({ dispatch }) => {
   dispatch({ type: actions.NEXT_SIDE });
 };
 
-const prevSlide = (dispatch) => {
+const prevSlide = ({ dispatch }) => {
   dispatch({ type: actions.PREV_SLIDE });
 };
 

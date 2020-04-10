@@ -23,6 +23,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "history": "^4.10.1",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -35,6 +36,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "npm test -- --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -80,6 +82,18 @@
     "src/**/*.{js,jsx}": [
       "prettier --write",
       "eslint src/**/*.js"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/view/**/*.{js, jsx}",
+      "src/state/**/*.{js, jsx}",
+      "!**/assets/**",
+      "!**/node_modules/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/"
     ]
   }
 }
