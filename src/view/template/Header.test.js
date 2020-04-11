@@ -10,7 +10,11 @@ describe('<Header />', () => {
     const { container, getByText } = render(
       <Header className={testClassName} />
     );
-    expect(container.firstChild.className.includes(testClassName)).toBe(true);
+    expect(
+      container.firstChild.firstChild.firstChild.className.includes(
+        testClassName
+      )
+    ).toBe(true);
     expect(getByText('C-emlélet')).toBeInTheDocument();
   });
 });
