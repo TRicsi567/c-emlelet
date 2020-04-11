@@ -44,6 +44,7 @@ class Header extends React.Component {
         <div className='auth-buttons'>
           <input
             type='button'
+            className='lgnbtn'
             id='login-button'
             value='Login'
             onClick={(e) => {
@@ -52,6 +53,7 @@ class Header extends React.Component {
           />
           <input
             type='button'
+            className='regbtn'
             id='register-button'
             value='Register'
             onClick={(e) => {
@@ -71,9 +73,9 @@ class Header extends React.Component {
             <h1>
               <a href='/'>C-emlélet</a>
             </h1>
+            {this.renderAuthButtons()}
           </header>
         </div>
-        {this.renderAuthButtons()}
       </div>
     );
   }
