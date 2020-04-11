@@ -11,7 +11,7 @@ describe('<Screen /> lesson', () => {
   history.location.pathname = '/0';
 
   test('Renders correctly', () => {
-    const { container } = render(
+    const { container, rerender } = render(
       <Router history={history}>
         <AppProvider>
           <Screen />
@@ -32,5 +32,16 @@ describe('<Screen /> lesson', () => {
     ).toBeTruthy();
     fireEvent.click(container.querySelector('.back-button'));
     expect(history.length).toEqual(2);
+    try {
+      rerender(
+        <Router history={history}>
+          <Screen />
+        </Router>
+      );
+    } catch (e) {
+      expect(e.message).toEqual(
+        'useAppContext must be used inside an AppProvider'
+      );
+    }
   });
 });
