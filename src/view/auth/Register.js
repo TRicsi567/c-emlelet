@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import './Register.scss';
 
 class RegisterContent extends React.Component {
   constructor(props) {
