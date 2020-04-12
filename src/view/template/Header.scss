@@ -12,4 +12,46 @@
     text-align: center;
     margin: 0;
   }
+
+  
 }
+.auth-buttons {
+  
+  .lgnbtn {
+    transition-duration: 1s;
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    }
+  .lgnbtn:hover {
+    background-color: rgb(255, 0, 0); /* Green */
+    color: white;
+  }
+
+
+  .regbtn {
+    transition-duration: 1s;
+    background-color: #4CAF50; /* Green */
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    }
+  .regbtn:hover {
+    background-color: rgb(255, 0, 0); /* Green */
+    color: white;
+  }
+}
+
