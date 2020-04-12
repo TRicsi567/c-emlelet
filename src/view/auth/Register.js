@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import './Register.scss';
+import { createBrowserHistory } from 'history';
 
 class RegisterContent extends React.Component {
   constructor(props) {
@@ -46,17 +46,13 @@ class RegisterContent extends React.Component {
       })
     });
     if (JSON.parse(await response.json())) {
-      this.setState({ redirectToLogin: true });
+      createBrowserHistory({ forceRefresh: true }).push('/login');
     } else {
       // TODO handle failed register.
     }
   }
 
-  redirectToLogin() {
-    return <Redirect to='/login' />;
-  }
-
-  renderRegister() {
+  render() {
     return (
       <>
         <div className='register-form'>
@@ -128,12 +124,6 @@ class RegisterContent extends React.Component {
         </div>
       </>
     );
-  }
-
-  render() {
-    return this.state.redirectToLogin
-      ? this.redirectToLogin()
-      : this.renderRegister();
   }
 }
 

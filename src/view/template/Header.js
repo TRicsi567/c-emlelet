@@ -1,24 +1,21 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import './Header.scss';
 
 class Header extends React.Component {
   loginOnClick() {
-    const history = useHistory();
-    history.push('/login');
+    createBrowserHistory({ forceRefresh: true }).push('/login');
   }
 
   registerOnClick() {
-    const history = useHistory();
-    history.push('/register');
+    createBrowserHistory({ forceRefresh: true }).push('/register');
   }
 
   logoutOnClick() {
     localStorage.setItem('authUser', null);
-    const history = useHistory();
-    history.push('/');
+    createBrowserHistory({ forceRefresh: true }).push('/');
   }
 
   renderAuthButtons() {
@@ -44,7 +41,6 @@ class Header extends React.Component {
         <div className='auth-buttons'>
           <input
             type='button'
-            className='lgnbtn'
             id='login-button'
             value='Login'
             onClick={(e) => {
@@ -53,7 +49,6 @@ class Header extends React.Component {
           />
           <input
             type='button'
-            className='regbtn'
             id='register-button'
             value='Register'
             onClick={(e) => {
@@ -73,9 +68,9 @@ class Header extends React.Component {
             <h1>
               <a href='/'>C-emlélet</a>
             </h1>
-            {this.renderAuthButtons()}
           </header>
         </div>
+        {this.renderAuthButtons()}
       </div>
     );
   }
