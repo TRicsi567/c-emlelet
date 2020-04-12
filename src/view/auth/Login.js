@@ -1,13 +1,12 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 class LoginContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: '',
-      redirectToGraphs: false
+      password: ''
     };
   }
 
@@ -36,19 +35,12 @@ class LoginContent extends React.Component {
     let res = JSON.parse(await response.json());
     if (res.hasOwnProperty('err')) alert(res.err);
     else {
-      this.setState({ redirectToGraphs: true });
       localStorage.setItem('authUser', JSON.stringify(res));
-      let user = JSON.parse(localStorage.getItem('authUser'));
-      console.log(user.id);
-      console.log(user.username);
+      createBrowserHistory({ forceRefresh: true }).push('/');
     }
   }
 
-  redirectToGraphs() {
-    return <Redirect to='/graphs' />;
-  }
-
-  renderLogin() {
+  render() {
     return (
       <>
         <div className='login-form'>
@@ -92,12 +84,6 @@ class LoginContent extends React.Component {
         </div>
       </>
     );
-  }
-
-  render() {
-    return this.state.redirectToGraphs
-      ? this.redirectToGraphs()
-      : this.renderLogin();
   }
 }
 
