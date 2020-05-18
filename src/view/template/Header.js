@@ -1,26 +1,28 @@
 import React from 'react';
-import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import './Header.scss';
+import { useHistory } from 'react-router-dom';
 
-class Header extends React.Component {
-  loginOnClick() {
-    createBrowserHistory({ forceRefresh: true }).push('/login');
-  }
+const Header = (props) => {
+  const { className } = props;
+  const history = useHistory();
 
-  registerOnClick() {
-    createBrowserHistory({ forceRefresh: true }).push('/register');
-  }
+  const loginOnClick = () => {
+    history.push('/user/login');
+  };
 
-  logoutOnClick() {
+  const registerOnClick = () => {
+    history.push('/user/register');
+  };
+
+  const logoutOnClick = () => {
     localStorage.setItem('authUser', null);
-    createBrowserHistory({ forceRefresh: true }).push('/');
-  }
+    history.push('/');
+  };
 
-  renderAuthButtons() {
+  const renderAuthButtons = () => {
     let authUser = JSON.parse(localStorage.getItem('authUser'));
-    console.log(authUser);
 
     if (authUser !== null) {
       return (
@@ -30,9 +32,7 @@ class Header extends React.Component {
             type='button'
             id='logout-button'
             value='Logout'
-            onClick={(e) => {
-              this.logoutOnClick(e);
-            }}
+            onClick={logoutOnClick}
           />
         </div>
       );
@@ -43,38 +43,32 @@ class Header extends React.Component {
             type='button'
             id='login-button'
             value='Login'
-            onClick={(e) => {
-              this.loginOnClick(e);
-            }}
+            onClick={loginOnClick}
           />
           <input
             type='button'
             id='register-button'
             value='Register'
-            onClick={(e) => {
-              this.registerOnClick(e);
-            }}
+            onClick={registerOnClick}
           />
         </div>
       );
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className='header'>
-        <div className='header-root-div'>
-          <header className={clsx(this.props.className, 'header-root')}>
-            <h1>
-              <a href='/'>C-emlélet</a>
-            </h1>
-          </header>
-        </div>
-        {this.renderAuthButtons()}
+  return (
+    <div className='header'>
+      <div className='header-root-div'>
+        <header className={clsx(className, 'header-root')}>
+          <h1>
+            <a href='/'>C-emlélet</a>
+          </h1>
+        </header>
       </div>
-    );
-  }
-}
+      {renderAuthButtons()}
+    </div>
+  );
+};
 
 Header.propTypes = {
   className: PropTypes.string
