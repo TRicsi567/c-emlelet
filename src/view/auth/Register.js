@@ -1,130 +1,149 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+import axios from 'api';
 import './Register.scss';
-import { createBrowserHistory } from 'history';
+import { useHistory } from 'react-router';
 
-class RegisterContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      email: '',
-      password: '',
-      passwordRepeat: '',
-      redirectToLogin: false
-    };
+const actions = {
+  SET_USERNAME: 'SET_USERNAME',
+  SET_EMAIL: 'SET_EMAIL',
+  SET_PASSWORD: 'SET_PASSWORD',
+  SET_PASSWORD_REPEAT: 'SET_PASSWORD_REPEAT'
+};
+
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordRepeat: '',
+  redirectToLogin: false
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case actions.SET_USERNAME:
+      return { ...state, username: payload };
+    case actions.SET_EMAIL:
+      return { ...state, email: payload };
+    case actions.SET_PASSWORD:
+      return { ...state, password: payload };
+    case actions.SET_PASSWORD_REPEAT:
+      return { ...state, passwordRepeat: payload };
+    default:
+      return state;
   }
+};
 
-  handleUsernameChange(e) {
-    this.setState({ username: e.target.value });
-  }
+const RegisterContent = () => {
+  const history = useHistory();
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
+  const handleUsernameChange = (event) => {
+    dispatch({ type: actions.SET_USERNAME, payload: event.target.value });
+  };
 
-  handlePasswordRepeatChange(e) {
-    this.setState({ passwordRepeat: e.target.value });
-  }
+  const handleEmailChange = (event) => {
+    dispatch({ type: actions.SET_EMAIL, payload: event.target.value });
+  };
 
-  async handleOnSubmit() {
-    if (this.state.password !== this.state.passwordRepeat) return;
-    let response = await fetch('http://localhost:3500/users/register/', {
-      method: 'POST',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3500/',
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password
-      })
+  const handlePasswordChange = (event) => {
+    dispatch({ type: actions.SET_PASSWORD, payload: event.target.value });
+  };
+
+  const handlePasswordRepeatChange = (event) => {
+    dispatch({
+      type: actions.SET_PASSWORD_REPEAT,
+      payload: event.target.value
     });
-    if (JSON.parse(await response.json())) {
-      createBrowserHistory({ forceRefresh: true }).push('/login');
-    } else {
-      // TODO handle failed register.
+  };
+
+  const handleOnSubmit = async () => {
+    if (state.password !== state.passwordRepeat) return;
+    try {
+      const { status } = await axios.post('/users/register', {
+        username: state.username,
+        email: state.email,
+        password: state.password
+      });
+      console.log(status);
+      history.push('/user/login');
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <div className='register-form'>
-          <div className='container'>
-            <h1>Register</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr></hr>
+  return (
+    <>
+      <div className='register-form'>
+        <div className='container'>
+          <h1>Register</h1>
+          <p>Please fill in this form to create an account.</p>
+          <hr></hr>
 
-            <label htmlFor='username'>
-              <b>Username</b>
-            </label>
-            <input
-              type='text'
-              placeholder='Enter Username'
-              name='username'
-              required
-              onChange={(e) => this.handleUsernameChange(e)}
-            />
+          <label htmlFor='username'>
+            <b>Username</b>
+          </label>
+          <input
+            type='text'
+            placeholder='Enter Username'
+            name='username'
+            required
+            value={state.username}
+            onChange={handleUsernameChange}
+          />
 
-            <label htmlFor='email'>
-              <b>Email</b>
-            </label>
-            <input
-              type='email'
-              placeholder='Enter Email'
-              name='email'
-              required
-              onChange={(e) => this.handleEmailChange(e)}
-            />
+          <label htmlFor='email'>
+            <b>Email</b>
+          </label>
+          <input
+            type='email'
+            placeholder='Enter Email'
+            name='email'
+            required
+            value={state.email}
+            onChange={handleEmailChange}
+          />
 
-            <label htmlFor='psw'>
-              <b>Password</b>
-            </label>
-            <input
-              type='password'
-              placeholder='Enter Password'
-              name='psw'
-              required
-              onChange={(e) => this.handlePasswordChange(e)}
-            />
+          <label htmlFor='psw'>
+            <b>Password</b>
+          </label>
+          <input
+            type='password'
+            placeholder='Enter Password'
+            name='psw'
+            required
+            value={state.password}
+            onChange={handlePasswordChange}
+          />
 
-            <label htmlFor='psw-repeat'>
-              <b>Repeat Password</b>
-            </label>
-            <input
-              type='password'
-              placeholder='Repeat Password'
-              name='psw-repeat'
-              required
-              onChange={(e) => this.handlePasswordRepeatChange(e)}
-            />
-            <hr></hr>
+          <label htmlFor='psw-repeat'>
+            <b>Repeat Password</b>
+          </label>
+          <input
+            type='password'
+            placeholder='Repeat Password'
+            name='psw-repeat'
+            required
+            value={state.passwordRepeat}
+            onChange={handlePasswordRepeatChange}
+          />
+          <hr></hr>
 
-            <p>
-              By creating an account you agree to our{' '}
-              <a href='/'>Terms & Privacy</a>.
-            </p>
-            <input
-              type='button'
-              value='Register'
-              onClick={(e) => this.handleOnSubmit(e)}
-            />
-          </div>
-        </div>
-        <div className='container signin'>
           <p>
-            Already have an account? <a href='/login'>Sign in</a>.
+            By creating an account you agree to our{' '}
+            <a href='/'>Terms & Privacy</a>.
           </p>
+          <input type='button' value='Register' onClick={handleOnSubmit} />
         </div>
-      </>
-    );
-  }
-}
+      </div>
+      <div className='container signin'>
+        <p>
+          Already have an account? <a href='/user/login'>Sign in</a>.
+        </p>
+      </div>
+    </>
+  );
+};
 
 export { RegisterContent as default };

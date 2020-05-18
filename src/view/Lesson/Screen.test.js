@@ -2,7 +2,7 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import AppProvider from 'state/App/context';
+import AppProvider from 'state/App';
 import Screen from './Screen';
 
 describe('<Screen /> lesson', () => {
@@ -35,7 +35,9 @@ describe('<Screen /> lesson', () => {
     try {
       rerender(
         <Router history={history}>
-          <Screen />
+          <AppProvider>
+            <Screen />
+          </AppProvider>
         </Router>
       );
     } catch (e) {
