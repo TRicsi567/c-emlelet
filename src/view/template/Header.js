@@ -42,12 +42,14 @@ const Header = (props) => {
           <input
             type='button'
             id='login-button'
+            className='lgnbtn'
             value='Login'
             onClick={loginOnClick}
           />
           <input
             type='button'
             id='register-button'
+            className='regbtn'
             value='Register'
             onClick={registerOnClick}
           />
@@ -58,14 +60,13 @@ const Header = (props) => {
 
   return (
     <div className='header'>
-      <div className='header-root-div'>
-        <header className={clsx(className, 'header-root')}>
-          <h1>
-            <a href='/'>C-emlélet</a>
-          </h1>
-        </header>
-      </div>
-      {renderAuthButtons()}
+      <header className={clsx(className, 'header-root')}>
+        {renderAuthButtons()}
+        <h1>
+          <a href='/'>C-emlélet</a>
+        </h1>
+        <div />
+      </header>
     </div>
   );
 };

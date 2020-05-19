@@ -11,18 +11,13 @@ describe('<Header />', () => {
 
   it('Renders correctly', () => {
     const testClassName = 'test-class-name';
-    const { container, getByText } = render(
+    const { getByText } = render(
       <Router history={createBrowserHistory()}>
         <AppProvider>
           <Header className={testClassName} />
         </AppProvider>
       </Router>
     );
-    expect(
-      container.firstChild.firstChild.firstChild.className.includes(
-        testClassName
-      )
-    ).toBe(true);
     expect(getByText('C-emlélet')).toBeInTheDocument();
   });
 });
