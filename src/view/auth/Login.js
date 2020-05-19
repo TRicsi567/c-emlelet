@@ -73,9 +73,10 @@ const LoginContent = () => {
         username: state.username,
         password: state.password
       });
-      if (!data.hasOwnProperty("err"))
+      if (!data.hasOwnProperty("err")) {
         localStorage.setItem('authUser', data);
-      history.push('/');
+        history.push('/');
+      }
     } catch (error) {
       console.error(error);
     }
