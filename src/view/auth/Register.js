@@ -160,7 +160,12 @@ const RegisterContent = () => {
             By creating an account you agree to our{' '}
             <a href='/'>Terms & Privacy</a>.
           </p>
-          <input type='button' value='Register' onClick={handleOnSubmit} />
+          <input
+            type='button'
+            value='Register'
+            className='regbtn'
+            onClick={handleOnSubmit}
+          />
         </div>
       </div>
       <div className='container signin'>
