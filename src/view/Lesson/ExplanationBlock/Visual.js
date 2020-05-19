@@ -5,7 +5,11 @@ const VisualExplanation = (props) => {
   const { slideNum, images } = props;
   return (
     <div>
-      <img src={images[slideNum]} alt={`slide-${slideNum}`} />
+      <img
+        src={images[slideNum]}
+        alt={`slide-${slideNum}`}
+        style={{ maxWidth: '100%' }}
+      />
     </div>
   );
 };

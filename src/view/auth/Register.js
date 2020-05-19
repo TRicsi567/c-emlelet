@@ -75,12 +75,11 @@ const RegisterContent = () => {
   const handleOnSubmit = async () => {
     if (state.password !== state.passwordRepeat) return;
     try {
-      const { status } = await axios.post('/users/register', {
+      await axios.post('/users/register', {
         username: state.username,
         email: state.email,
         password: state.password
       });
-      console.log(status);
       history.push('/user/login');
     } catch (error) {
       console.error(error);
