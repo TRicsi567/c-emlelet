@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'api';
+import Input from './Input';
 import './Login.scss';
-import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
 const actions = {
@@ -87,7 +87,7 @@ const LoginContent = () => {
           <h1>Login</h1>
           <hr></hr>
 
-          <TextField
+          <Input
             placeholder='Enter Username'
             name='username'
             label='Username'
@@ -98,7 +98,7 @@ const LoginContent = () => {
             onChange={handleUsernameChange}
           />
 
-          <TextField
+          <Input
             type='password'
             placeholder='Enter Password'
             name='psw'

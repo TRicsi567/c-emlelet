@@ -1,10 +1,10 @@
 import React, { useReducer } from 'react';
 import axios from 'api';
 import Grid from 'view/template/Grid';
-import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import './Register.scss';
 import { useHistory } from 'react-router';
+import Input from './Input';
 
 const actions = {
   SET_USERNAME: 'SET_USERNAME',
@@ -37,21 +37,8 @@ const reducer = (state, action) => {
   }
 };
 const useStyles = makeStyles({
-  root: {
-    margin: [[24, 0]],
-    '& *': {
-      color: 'white'
-    },
-    '& .MuiFormLabel-root.Mui-focused': {
-      color: 'white'
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'white'
-    },
-    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'white',
-      borderWidth: '1.5px'
-    }
+  input: {
+    margin: [[16, 0]]
   },
   inputContainer: {
     display: 'flex',
@@ -107,7 +94,7 @@ const RegisterContent = () => {
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
           <div className={classes.inputContainer}>
-            <TextField
+            <Input
               id='username'
               variant='outlined'
               label='Username'
@@ -116,10 +103,10 @@ const RegisterContent = () => {
               required
               name='username'
               placeholder='Enter Username'
-              className={classes.root}
+              className={classes.input}
             />
 
-            <TextField
+            <Input
               id='email'
               variant='outlined'
               label='Email'
@@ -127,33 +114,33 @@ const RegisterContent = () => {
               type='email'
               name='email'
               placeholder='Enter Email'
-              className={classes.root}
               value={state.email}
               onChange={handleEmailChange}
+              className={classes.input}
             />
 
-            <TextField
+            <Input
               id='password'
               variant='outlined'
               label='Password'
               required
               type='password'
               name='psw'
-              className={classes.root}
               value={state.password}
               onChange={handlePasswordChange}
+              className={classes.input}
             />
 
-            <TextField
+            <Input
               id='password-repeat'
               variant='outlined'
               label='Repeat Password'
               required
               type='password'
               name='psw-repeat'
-              className={classes.root}
               value={state.passwordRepeat}
               onChange={handlePasswordRepeatChange}
+              className={classes.input}
             />
           </div>
           <p>
