@@ -35,6 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:prod": "npm run build && cd ./server && npm start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "npm test -- --coverage --watchAll=false",
