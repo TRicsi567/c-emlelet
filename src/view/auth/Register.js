@@ -1,5 +1,8 @@
 import React, { useReducer } from 'react';
 import axios from 'api';
+import Grid from 'view/template/Grid';
+import { TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import './Register.scss';
 import { useHistory } from 'react-router';
 
@@ -33,9 +36,33 @@ const reducer = (state, action) => {
       return state;
   }
 };
+const useStyles = makeStyles({
+  root: {
+    margin: [[24, 0]],
+    '& *': {
+      color: 'white'
+    },
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    },
+    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white',
+      borderWidth: '1.5px'
+    }
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
+});
 
 const RegisterContent = () => {
   const history = useHistory();
+
+  const classes = useStyles();
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -74,62 +101,61 @@ const RegisterContent = () => {
   };
 
   return (
-    <>
+    <Grid className='register-form-root'>
       <div className='register-form'>
-        <div className='container'>
+        <div className='input-container'>
           <h1>Register</h1>
           <p>Please fill in this form to create an account.</p>
-          <hr></hr>
+          <div className={classes.inputContainer}>
+            <TextField
+              id='username'
+              variant='outlined'
+              label='Username'
+              value={state.username}
+              onChange={handleUsernameChange}
+              required
+              name='username'
+              placeholder='Enter Username'
+              className={classes.root}
+            />
 
-          <label htmlFor='username'>
-            <b>Username</b>
-          </label>
-          <input
-            type='text'
-            placeholder='Enter Username'
-            name='username'
-            required
-            value={state.username}
-            onChange={handleUsernameChange}
-          />
+            <TextField
+              id='email'
+              variant='outlined'
+              label='Email'
+              required
+              type='email'
+              name='email'
+              placeholder='Enter Email'
+              className={classes.root}
+              value={state.email}
+              onChange={handleEmailChange}
+            />
 
-          <label htmlFor='email'>
-            <b>Email</b>
-          </label>
-          <input
-            type='email'
-            placeholder='Enter Email'
-            name='email'
-            required
-            value={state.email}
-            onChange={handleEmailChange}
-          />
+            <TextField
+              id='password'
+              variant='outlined'
+              label='Password'
+              required
+              type='password'
+              name='psw'
+              className={classes.root}
+              value={state.password}
+              onChange={handlePasswordChange}
+            />
 
-          <label htmlFor='psw'>
-            <b>Password</b>
-          </label>
-          <input
-            type='password'
-            placeholder='Enter Password'
-            name='psw'
-            required
-            value={state.password}
-            onChange={handlePasswordChange}
-          />
-
-          <label htmlFor='psw-repeat'>
-            <b>Repeat Password</b>
-          </label>
-          <input
-            type='password'
-            placeholder='Repeat Password'
-            name='psw-repeat'
-            required
-            value={state.passwordRepeat}
-            onChange={handlePasswordRepeatChange}
-          />
-          <hr></hr>
-
+            <TextField
+              id='password-repeat'
+              variant='outlined'
+              label='Repeat Password'
+              required
+              type='password'
+              name='psw-repeat'
+              className={classes.root}
+              value={state.passwordRepeat}
+              onChange={handlePasswordRepeatChange}
+            />
+          </div>
           <p>
             By creating an account you agree to our{' '}
             <a href='/'>Terms & Privacy</a>.
@@ -142,7 +168,7 @@ const RegisterContent = () => {
           Already have an account? <a href='/user/login'>Sign in</a>.
         </p>
       </div>
-    </>
+    </Grid>
   );
 };
 

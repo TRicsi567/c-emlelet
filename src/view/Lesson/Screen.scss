@@ -1,6 +1,7 @@
 .lesson-grid-container {
   margin: 16px;
-  min-height: 80vh;
+  height: 97%;
+  // min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(3, minmax(296px, 1fr));
   grid-template-rows: 1fr 12fr 1fr;

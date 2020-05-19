@@ -1,6 +1,6 @@
 .lessons-grid-container {
   margin: 24px;
-  min-height: 80vh;
+  // min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-auto-rows: min-content;
