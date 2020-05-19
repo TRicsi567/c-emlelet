@@ -9,23 +9,22 @@ import Login from 'view/auth/Login';
 import LessonsScreen from 'view/Lessons';
 import LessonScreen from 'view/Lesson';
 import AppProvider from 'state/App';
-
 function App() {
   return (
-    <AppProvider>
-      <Header className='header' />
-      <Content className='main'>
-        <Router>
+    <Router>
+      <AppProvider>
+        <Header className='header' />
+        <Content className='main'>
           <Switch>
-            <Route path='/login' exact component={Login} />
-            <Route path='/register' exact component={Register} />
             <Route path='/' exact component={LessonsScreen} />
             <Route path='/:id' exact component={LessonScreen} />
+            <Route path='/user/login' exact component={Login} />
+            <Route path='/user/register' exact component={Register} />
           </Switch>
-        </Router>
-      </Content>
-      <Footer className='footer' />
-    </AppProvider>
+        </Content>
+        <Footer className='footer' />
+      </AppProvider>
+    </Router>
   );
 }
 

@@ -1,31 +1,45 @@
-input[type=text]:focus {
-    border: 3px solid #555;
-  }
-
-  input[type=email]:focus {
-    border: 3px solid #555;
-  }
-
-  input[type=password]:focus {
-    border: 3px solid #555;
-  }
-
-  input[type=text]:focus {
-    border: 3px solid #555;
-  }
-
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: red;
-    opacity: 1; /* Firefox */
+input[type='text']:focus {
+  border: 3px solid #555;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: red;
+input[type='email']:focus {
+  border: 3px solid #555;
+}
+
+input[type='password']:focus {
+  border: 3px solid #555;
+}
+
+input[type='text']:focus {
+  border: 3px solid #555;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: red;
 }
 
 label {
-    color: white;
-    padding: 8px;
-    margin: 10px;
-  }
+  color: white;
+  padding: 8px;
+  margin: 10px;
+}
+
+.register-form-root {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

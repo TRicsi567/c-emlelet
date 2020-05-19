@@ -1,130 +1,175 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+import axios from 'api';
+import Grid from 'view/template/Grid';
+import { TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import './Register.scss';
-import { createBrowserHistory } from 'history';
+import { useHistory } from 'react-router';
 
-class RegisterContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      email: '',
-      password: '',
-      passwordRepeat: '',
-      redirectToLogin: false
-    };
+const actions = {
+  SET_USERNAME: 'SET_USERNAME',
+  SET_EMAIL: 'SET_EMAIL',
+  SET_PASSWORD: 'SET_PASSWORD',
+  SET_PASSWORD_REPEAT: 'SET_PASSWORD_REPEAT'
+};
+
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  passwordRepeat: '',
+  redirectToLogin: false
+};
+
+const reducer = (state, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case actions.SET_USERNAME:
+      return { ...state, username: payload };
+    case actions.SET_EMAIL:
+      return { ...state, email: payload };
+    case actions.SET_PASSWORD:
+      return { ...state, password: payload };
+    case actions.SET_PASSWORD_REPEAT:
+      return { ...state, passwordRepeat: payload };
+    default:
+      return state;
   }
-
-  handleUsernameChange(e) {
-    this.setState({ username: e.target.value });
-  }
-
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  handlePasswordRepeatChange(e) {
-    this.setState({ passwordRepeat: e.target.value });
-  }
-
-  async handleOnSubmit() {
-    if (this.state.password !== this.state.passwordRepeat) return;
-    let response = await fetch('http://localhost:3500/users/register/', {
-      method: 'POST',
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3500/',
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password
-      })
-    });
-    if (JSON.parse(await response.json())) {
-      createBrowserHistory({ forceRefresh: true }).push('/login');
-    } else {
-      // TODO handle failed register.
+};
+const useStyles = makeStyles({
+  root: {
+    margin: [[24, 0]],
+    '& *': {
+      color: 'white'
+    },
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    },
+    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white',
+      borderWidth: '1.5px'
     }
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column'
   }
+});
 
-  render() {
-    return (
-      <>
-        <div className='register-form'>
-          <div className='container'>
-            <h1>Register</h1>
-            <p>Please fill in this form to create an account.</p>
-            <hr></hr>
+const RegisterContent = () => {
+  const history = useHistory();
 
-            <label htmlFor='username'>
-              <b>Username</b>
-            </label>
-            <input
-              type='text'
-              placeholder='Enter Username'
+  const classes = useStyles();
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleUsernameChange = (event) => {
+    dispatch({ type: actions.SET_USERNAME, payload: event.target.value });
+  };
+
+  const handleEmailChange = (event) => {
+    dispatch({ type: actions.SET_EMAIL, payload: event.target.value });
+  };
+
+  const handlePasswordChange = (event) => {
+    dispatch({ type: actions.SET_PASSWORD, payload: event.target.value });
+  };
+
+  const handlePasswordRepeatChange = (event) => {
+    dispatch({
+      type: actions.SET_PASSWORD_REPEAT,
+      payload: event.target.value
+    });
+  };
+
+  const handleOnSubmit = async () => {
+    if (state.password !== state.passwordRepeat) return;
+    try {
+      const { status } = await axios.post('/users/register', {
+        username: state.username,
+        email: state.email,
+        password: state.password
+      });
+      console.log(status);
+      history.push('/user/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <Grid className='register-form-root'>
+      <div className='register-form'>
+        <div className='input-container'>
+          <h1>Register</h1>
+          <p>Please fill in this form to create an account.</p>
+          <div className={classes.inputContainer}>
+            <TextField
+              id='username'
+              variant='outlined'
+              label='Username'
+              value={state.username}
+              onChange={handleUsernameChange}
+              required
               name='username'
-              required
-              onChange={(e) => this.handleUsernameChange(e)}
+              placeholder='Enter Username'
+              className={classes.root}
             />
 
-            <label htmlFor='email'>
-              <b>Email</b>
-            </label>
-            <input
+            <TextField
+              id='email'
+              variant='outlined'
+              label='Email'
+              required
               type='email'
-              placeholder='Enter Email'
               name='email'
-              required
-              onChange={(e) => this.handleEmailChange(e)}
+              placeholder='Enter Email'
+              className={classes.root}
+              value={state.email}
+              onChange={handleEmailChange}
             />
 
-            <label htmlFor='psw'>
-              <b>Password</b>
-            </label>
-            <input
+            <TextField
+              id='password'
+              variant='outlined'
+              label='Password'
+              required
               type='password'
-              placeholder='Enter Password'
               name='psw'
-              required
-              onChange={(e) => this.handlePasswordChange(e)}
+              className={classes.root}
+              value={state.password}
+              onChange={handlePasswordChange}
             />
 
-            <label htmlFor='psw-repeat'>
-              <b>Repeat Password</b>
-            </label>
-            <input
+            <TextField
+              id='password-repeat'
+              variant='outlined'
+              label='Repeat Password'
+              required
               type='password'
-              placeholder='Repeat Password'
               name='psw-repeat'
-              required
-              onChange={(e) => this.handlePasswordRepeatChange(e)}
-            />
-            <hr></hr>
-
-            <p>
-              By creating an account you agree to our{' '}
-              <a href='/'>Terms & Privacy</a>.
-            </p>
-            <input
-              type='button'
-              value='Register'
-              onClick={(e) => this.handleOnSubmit(e)}
+              className={classes.root}
+              value={state.passwordRepeat}
+              onChange={handlePasswordRepeatChange}
             />
           </div>
-        </div>
-        <div className='container signin'>
           <p>
-            Already have an account? <a href='/login'>Sign in</a>.
+            By creating an account you agree to our{' '}
+            <a href='/'>Terms & Privacy</a>.
           </p>
+          <input type='button' value='Register' onClick={handleOnSubmit} />
         </div>
-      </>
-    );
-  }
-}
+      </div>
+      <div className='container signin'>
+        <p>
+          Already have an account? <a href='/user/login'>Sign in</a>.
+        </p>
+      </div>
+    </Grid>
+  );
+};
 
 export { RegisterContent as default };
