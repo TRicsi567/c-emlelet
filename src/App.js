@@ -9,6 +9,7 @@ import Login from 'view/auth/Login';
 import LessonsScreen from 'view/Lessons';
 import LessonScreen from 'view/Lesson';
 import AppProvider from 'state/App';
+
 function App() {
   return (
     <Router>

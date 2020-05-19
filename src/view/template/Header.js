@@ -31,6 +31,7 @@ const Header = (props) => {
           <input
             type='button'
             id='logout-button'
+            className='lgoutbtn'
             value='Logout'
             onClick={logoutOnClick}
           />

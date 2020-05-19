@@ -1,6 +1,9 @@
 import React, { useReducer } from 'react';
 import { useHistory } from 'react-router';
 import axios from 'api';
+import Input from './Input';
+import './Login.scss';
+import { makeStyles } from '@material-ui/styles';
 
 const actions = {
   SET_USERNAME: 'SET_USERNAME',
@@ -23,11 +26,34 @@ const reducer = (state, action) => {
       return state;
   }
 };
+const useStyles = makeStyles({
+  root: {
+    margin: [[24, 0]],
+    '& *': {
+      color: 'white'
+    },
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    },
+    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white',
+      borderWidth: '1.5px'
+    }
+  },
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
+});
 
 const LoginContent = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const history = useHistory();
+  const classes = useStyles();
 
   const handleUsernameChange = (event) => {
     dispatch({ type: actions.SET_USERNAME, payload: event.target.value });
@@ -60,32 +86,37 @@ const LoginContent = () => {
         <div className='container'>
           <h1>Login</h1>
           <hr></hr>
-          <label htmlFor='username'>
-            <b>Username</b>
-          </label>
-          <input
-            type='text'
+
+          <Input
             placeholder='Enter Username'
             name='username'
+            label='Username'
+            variant='outlined'
             required
+            className={classes.root}
             value={state.username}
             onChange={handleUsernameChange}
           />
 
-          <label htmlFor='psw'>
-            <b>Password</b>
-          </label>
-          <input
+          <Input
             type='password'
             placeholder='Enter Password'
             name='psw'
+            label='Password'
+            variant='outlined'
             required
+            className={classes.root}
             value={state.password}
             onChange={handlePasswordChange}
           />
           <hr></hr>
 
-          <input type='button' value='Sign in' onClick={handleOnSubmit} />
+          <input
+            type='button'
+            value='Sign in'
+            className='lgnbtn'
+            onClick={handleOnSubmit}
+          />
         </div>
       </div>
       <div className='container signup'>
